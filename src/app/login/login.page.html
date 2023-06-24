@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar class="pink">
+    <ion-title>
+      Bienvenido!
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-img src="assets\logo.svg"></ion-img>
+
+        <ion-item class="ion-margin-top">
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input [(ngModel)]="modeloUsuario" type="text" minlength="3" maxlength="50" required></ion-input>
+        </ion-item>
+
+        <ion-item class="ion-margin-top">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input [(ngModel)]="modeloContrasena" type="password" minlength="4" maxlength="4" required></ion-input>
+        </ion-item>
+
+        <ion-button (click)="validarCredenciales()" class="ion-margin-top pink" expand="block" routerLink="/home">Iniciar sesión</ion-button>
+        <ion-button (click)="mostrarFormulario()" class="ion-margin-top pink" expand="block" >Crear usuario</ion-button>
+
+        </ion-content>
+

@@ -24,3 +24,8 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+.pink {
+    --background: linear-gradient(90deg, rgba(240,184,224,1) 0%, rgba(142,183,228,1) 50%, rgba(232,89,202,1) 100%);;
+    --color: #fff;
+  }

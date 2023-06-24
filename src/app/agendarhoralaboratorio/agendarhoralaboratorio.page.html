@@ -1,0 +1,22 @@
+<ion-content>
+  <h1>Agenda de horas</h1>
+  <ion-list>
+    <ion-item>
+      <ion-label>Hora: {{ hora1 }} AM</ion-label>
+      <ion-button slot="end" expand="full"  class="ion-margin-top pink" onclick="agendarHora('09:00 AM')">Agendar</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hora: {{ hora2 }} AM</ion-label>
+      <ion-button slot="end" expand="full"  class="ion-margin-top pink" onclick="agendarHora('10:00 AM')">Agendar</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hora: {{ hora3 }} AM</ion-label>
+      <ion-button slot="end" expand="full"  class="ion-margin-top pink" onclick="agendarHora('11:00 AM')">Agendar</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hora: {{ hora4 }} PM</ion-label>
+      <ion-button slot="end" expand="full"  class="ion-margin-top pink" onclick="agendarHora('12:00 PM')">Agendar</ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-button class="ion-margin-top pink" expand="block" routerLink="/login">Salir <mat-icon>arrow_right_alt</mat-icon></ion-button>
+</ion-content>
