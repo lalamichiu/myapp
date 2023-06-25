@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { DbService } from '../services/db.service';
 import {AlertController} from "@ionic/angular";
+import { ToastController } from '@ionic/angular'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+
 export class LoginPage implements OnInit {
 
   modeloUsuario: string = "";
   modeloContrasena: string = "";
 
-  constructor(private dbService: DbService, private alertController: AlertController) { 
+  constructor(private dbService: DbService, private alertController: AlertController, private toastController: ToastController, private formBuilder: FormBuilder, private router: Router) { 
     console.log("Constructor de login");
   }
 
@@ -61,6 +69,32 @@ async mostrarFormulario(){
 }
 
 almacenarUsuario(correo:string, contrasena:number){
-  this.dbService.almacenarUsuario(correo,contrasena);
+  this.dbService.validarCorreo(correo).then((data) => {
+    if(!data){
+      console.log("LB: SE VALIDA CORREO");
+      this.dbService.almacenarUsuario(correo,contrasena);
+    }else{
+      this.presentToast();
+    }
+  });
+}
+
+validarUsuario(correo:string, contrasena:number){
+  this.dbService.validarCorreo(correo).then((data) => {
+    if(!data){
+      console.log("LB: SE VALIDA USUARIO");
+      this.router.navigate(['/home']);
+    }else{
+      this.presentToast();
+    }
+  });
+}
+
+async presentToast() {
+  const toast = await this.toastController.create({
+    message: 'Usuario ya existe',
+    duration: 2000
+  });
+  toast.present();
 }
 }
