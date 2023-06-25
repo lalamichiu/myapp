@@ -12,7 +12,7 @@ export class DbService {
       name: 'datos.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      db.executeSql('CREATE TABLE IF NOT EXISTS USUARIO(CORREO VARCHAR(75), CONTRASENA VARCHAR(30))', []).then(() => {
+      db.executeSql('CREATE TABLE IF NOT EXISTS USUARIO(MAIL VARCHAR(75), CONTRASENA VARCHAR(30))', []).then(() => {
       console.log('LB: TABLA CREADA OK');
       }).catch(e => {
         console.log('LB: TABLA NO CREADA');
@@ -36,6 +36,42 @@ export class DbService {
         console.log('LB: BASE DE DATOS NO CREADA');
     })
   }
+
+  validarUsuario(correo:string, contrasena:number){
+    this.sqlite.create({
+      name: 'datos.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      db.executeSql('SELECT COUNT(MAIL) AS CANTIDAD FROM USUARIO WHERE MAIL = ?', [correo,contrasena]).then(() => {
+      console.log('LB: INICIO SESION OK');
+      }).catch(e => {
+        console.log('LB: NO SE PUDO INICIAR SESION');
+    })
+    }).catch(e => {
+        console.log('LB: NO SE PUDO INICIAR SESION');
+    })
+  }
+
+  validarCorreo(correo:string){
+    return this.sqlite.create({
+      name: 'datos.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      return db.executeSql('SELECT COUNT(MAIL) AS CANTIDAD FROM USUARIO WHERE MAIL = ?', [correo]).then((data) => {
+
+        if(data.rows.item(0).CANTIDAD == 0){
+          return false; //No existe el correo
+        }
+        return true;
+      }).catch(e => {
+        return true;
+    })
+    }).catch(e => {
+      return true;
+    })
+  }
+
+  
 
   canActivate(){
 this.router.navigate(['login']);
