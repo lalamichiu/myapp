@@ -5,8 +5,7 @@ import { DbService } from './services/db.service';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivate: [DbService]
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
     path: '',
@@ -55,13 +54,11 @@ const routes: Routes = [
   },
   {
     path: 'agendarhoralaboratorio',
-    loadChildren: () => import('./agendarhoralaboratorio/agendarhoralaboratorio.module').then( m => m.AgendarhoralaboratorioPageModule),
-    canActivate: [DbService]
+    loadChildren: () => import('./agendarhoralaboratorio/agendarhoralaboratorio.module').then( m => m.AgendarhoralaboratorioPageModule)
   },
   {
     path: 'resultadoexamenes',
-    loadChildren: () => import('./resultadoexamenes/resultadoexamenes.module').then( m => m.ResultadoexamenesPageModule),
-    canActivate: [DbService]
+    loadChildren: () => import('./resultadoexamenes/resultadoexamenes.module').then( m => m.ResultadoexamenesPageModule)
   },
   {
     path: 'e404',

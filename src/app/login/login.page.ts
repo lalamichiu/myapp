@@ -30,6 +30,7 @@ export class LoginPage implements OnInit {
   validarCredenciales(){
     console.log(this.modeloUsuario);
     console.log(this.modeloContrasena);
+    this.router.navigate(['/home']);
   }
     
 async mostrarFormulario(){
